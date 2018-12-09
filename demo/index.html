@@ -1,32 +1,78 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
-    <title>sign-here demo</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
-    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
-    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <title>sign-here demo</title>
 
-    <link rel="import" href="x-sign-here.html">
-    <link rel="import" href="../sign-here.html">
+    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
 
-    <style is="custom-style" include="demo-pages-shared-styles">
-    </style>
+    <script type="module">
+      import '@polymer/iron-demo-helpers/demo-pages-shared-styles';
+      import '@polymer/iron-demo-helpers/demo-snippet';
+    </script>
+
+    <script type="module" src="../sign-here.js"></script>
+
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+        sign-here, img {
+          border: 1px solid #ccc;
+          width: 400px;
+          height: 200px;
+        }
+        pre {
+          white-space: pre-wrap;
+          word-wrap: break-word;
+        }
+      </style>
+    </custom-style>
   </head>
   <body>
-
     <div class="vertical-section-container centered">
-      <h3>Basic sign-here Demo</h3>
+      <h3>Basic sign-here demo</h3>
       <demo-snippet>
         <template>
-          <sign-here id="signhere" width="360" height="180"></sign-here>
+          <sign-here id="signhere" width="400" height="200" active="true" empty="{{empty}}" type="image/png" pen-color="#33a" background-color="#fffff7"></sign-here>
+          <script>
+            const demo = document.querySelector('sign-here');
+          </script>
+
+          <button onclick="clear()">Clear</button>
+          <button onclick="jpeg()">Jpeg</button>
+          <button onclick="png()">Png</button>
+          <button onclick="webp()">Webp</button>
+          <button onclick="red()" style="color: #a33">Red</button>
+          <button onclick="green()" style="color: #3a3">Green</button>
+          <button onclick="blue()" style="color: #33a">Blue</button>
+          <h3>Captured Image</h3>
+          <img id="capturedImage">
+          <script>
+            function clear() {
+              demo.clear();
+            }
+            function jpeg() {
+              demo.type = 'image/jpeg';
+            }
+            function png() {
+              demo.type = 'image/png';
+            }
+            function webp() {
+              demo.type = 'image/webp';
+            }
+            function red() {
+              demo.color = '#a33';
+            }
+            function green() {
+              demo.color = '#3a3';
+            }
+            function blue() {
+              demo.color = '#33a';
+            }
+          </script>
         </template>
       </demo-snippet>
-
-      <h3>With Bound Properties</h3>
-      <x-sign-here></x-sign-here>
     </div>
   </body>
 </html>
