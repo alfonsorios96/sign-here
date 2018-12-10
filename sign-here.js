@@ -136,7 +136,7 @@ class SignHere extends PolymerElement {
     super.ready();
 
     const script = document.createElement('script');  // create a script DOM node
-    script.src = '/node_modules/signature_pad/dist/signature_pad.umd.min.js';  // set its src to the provided URL
+    script.src = 'https://cdn.jsdelivr.net/npm/signature_pad@3.0.0-beta.3/dist/signature_pad.umd.min.js';  // set its src to the provided URL
 
     script.onreadystatechange = callback.bind(this);
     script.onload = callback.bind(this);
